@@ -1,0 +1,25 @@
+name: Tidal_Unlock
+desc: 自己改了改
+http:
+  mitm:
+    - 'api.tidal.com'
+  script:
+    - match: ^https?:\/\/api\.tidal\.com\/v1\/users\/\d+\/subscription.+
+      name: Tidal-1
+      type: response
+      require-body: true
+      timeout: 10
+  script:
+    - match: ^https?:\/\/api\.tidal\.com\/v1\/tracks/\d+\/playbackinfopostpaywall.+
+      name: Tidal
+      type: response
+      require-body: true
+      timeout: 10
+script-providers:
+  Tidal-1:
+    url: https://raw.githubusercontent.com/yqc007/QuantumultX/master/TIDALHiFiPlusCrack.js
+    interval: 86400
+script-providers:
+  Tidal-2:
+    url: https://raw.githubusercontent.com/yqc007/QuantumultX/master/TidalHiFiPlusCrack.js
+    interval: 86400
