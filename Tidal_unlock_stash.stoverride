@@ -12,7 +12,7 @@ http:
   script:
     - match: ^https?:\/\/api\.tidal\.com\/v1\/tracks/\d+\/playbackinfopostpaywall.+
       name: Tidal
-      type: response
+      type: request
       require-body: true
       timeout: 10
 script-providers:
