@@ -1,0 +1,9 @@
+#!name=轻颜相机VIP
+#!desc=轻颜相机VIP
+#!author=彭于晏
+
+[MITM]
+hostname = commerce-api.faceu.mobi
+
+[Script]
+http-response ^https:\/\/commerce-api\.faceu\.mobi\/commerce\/v1\/subscription\/user_info? script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/qyxj.js, requires-body=true, timeout=10
