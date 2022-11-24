@@ -1,0 +1,12 @@
+#!name=Spark Mail解锁订阅
+#!desc=Spark Mail解锁订阅
+#!homepage=https://t.me/plus8889
+#!author=彭于晏💞
+#!icon=https://github.com/namelessup/Koolson-Qure/blob/master/IconSet/Color/Spark.png?raw=true
+
+[MITM]
+hostname= api.revenuecat.com
+[Script]
+
+
+http-response ^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/(\$RCAnonymousID%)?(\w)*$) script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/SparkMail.js, requires-body=true, timeout=10
