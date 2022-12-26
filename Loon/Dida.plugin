@@ -1,0 +1,11 @@
+#!name=滴答清单解锁VIP
+#!desc=滴答清单解锁VIP
+#!homepage=https://t.me/plus8889
+#!author=彭于晏💞
+#!icon=https://is5-ssl.mzstatic.com/image/thumb/Purple112/v4/29/4e/43/294e433b-5c1d-94d7-a67c-4f82c1477dc0/AppIcon-1x_U007emarketing-0-7-0-85-220.png/460x0w.webp
+
+[MITM]
+hostname= dida365.com
+
+[Script]
+http-response ^https:\/\/dida365\.com\/api\/v2\/user\/status script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/ddqd.js, requires-body=true, timeout=10
