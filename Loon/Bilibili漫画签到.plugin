@@ -1,0 +1,49 @@
+/*
+哔哩哔哩漫画签到
+
+脚本兼容: QuantumultX, Surge, Loon
+电报频道：@NobyDa
+问题反馈：@NobyDa_bot
+如果转载，请注明出处
+
+说明：
+打开哔哩哔哩漫画后 (AppStore中国区)，单击"我的", 如果通知获取cookie成功, 则可以使用此脚本. 
+
+脚本将在每天上午9点执行。 您可以修改执行时间。
+
+~~~~~~~~~~~~~~~~
+Surge 4.2.0+ :
+
+[Script]
+Bili漫画签到 = type=cron,cronexp=0 9 * * *,wake-system=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
+
+Bili漫画Cookie = type=http-request,pattern=^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
+
+[MITM]
+hostname = app.bilibili.com
+~~~~~~~~~~~~~~~~
+QX 1.0.10+ :
+
+[task_local]
+0 9 * * * https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js, tag=Bili漫画签到
+
+[rewrite_local]
+#获取Bili漫画Cookie
+^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo url script-request-header https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js
+
+[mitm]
+hostname = app.bilibili.com
+~~~~~~~~~~~~~~~~
+*/
+
+#!name=Bilibili漫画签到
+#!desc=Bilibili漫画签到
+#!homepage=https://github.com/NobyDa/Script/blob/master/Bilibili-DailyBonus/Manga.js
+#!author=@NobyDa
+#!icon=https://is5-ssl.mzstatic.com/image/thumb/Purple122/v4/eb/5a/36/eb5a36cb-1606-6972-2d9f-3a3aa95d9a44/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/460x0w.webp
+
+[mitm]
+hostname = app.bilibili.com
+
+[Script]
+http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js, requires-body=true, timeout=10
