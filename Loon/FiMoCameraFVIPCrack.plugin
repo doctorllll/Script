@@ -1,0 +1,11 @@
+#!name=FIMO解锁终身会员
+#!desc=FIMO解锁终身会员
+#!homepage=http://t.cn/AiNMwtTQ
+#!author=Hausd0rff
+#!icon=https://is3-ssl.mzstatic.com/image/thumb/Purple122/v4/d7/9e/6c/d79e6c17-6d9f-b5fd-a8cb-74489196c1e4/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/460x0w.webp
+
+[mitm]
+hostname = server.yoyiapp.com
+
+[Script]
+http-response ^https?:\/\/server\.yoyiapp\.com\/fimo-user\/apple\/certificate$ script-path=https://raw.githubusercontent.com/yqc007/QuantumultX/master/FiMoCameraFVIPCrack.js, requires-body=true, timeout=10
