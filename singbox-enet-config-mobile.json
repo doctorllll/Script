@@ -1,0 +1,1149 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "cache_id": "my_profile2",
+      "store_fakeip": true
+    },
+    "clash_api": {
+      "external_ui": "ui",
+      "external_controller": "0.0.0.0:9090",
+      "external_ui_download_detour": "Proxy",
+      "default_mode": "rule"
+    }
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "google",
+        "address": "tls://8.8.8.8",
+        "detour": "Proxy"
+      },
+      {
+        "tag": "fallback",
+        "address": "8.134.187.254:5553",
+        "address_resolver": "google",
+        "detour": "Proxy"
+      },
+      {
+        "tag": "local-dns",
+        "address": "119.29.29.29",
+        "detour": "direct"
+      },
+      {
+        "tag": "block-dns",
+        "address": "rcode://success"
+      },
+      {
+        "tag": "OpenAIdns",
+        "address": "8.134.187.254:5553",
+        "detour": "OpenAI"
+      },
+      {
+        "tag": "Youtubedns",
+        "address": "8.134.187.254:5553",
+        "detour": "Youtube"
+      },
+      {
+        "tag": "Telegramdns",
+        "address": "8.134.187.254:5553",
+        "detour": "Telegram"
+      },
+      {
+        "tag": "Githubdns",
+        "address": "8.134.187.254:5553",
+        "detour": "Github"
+      },
+      {
+        "tag": "Openaidns",
+        "address": "8.134.187.254:5553",
+        "detour": "Openai"
+      },
+      {
+        "tag": "Netflixdns",
+        "address": "8.134.187.254:5553",
+        "detour": "Netflix"
+      },
+      {
+        "tag": "Googledns",
+        "address": "8.134.187.254:5553",
+        "detour": "Google"
+      },
+      {
+        "tag": "Directdns",
+        "address": "8.134.187.254:5553",
+        "detour": "Direct"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "local-dns"
+      },
+      {
+        "rule_set": [
+          "OpenAI0"
+        ],
+        "server": "OpenAIdns"
+      },
+      {
+        "rule_set": [
+          "Youtube0"
+        ],
+        "server": "Youtubedns"
+      },
+      {
+        "rule_set": [
+          "Telegram1"
+        ],
+        "server": "Telegramdns"
+      },
+      {
+        "rule_set": [
+          "Github0"
+        ],
+        "server": "Githubdns"
+      },
+      {
+        "rule_set": [
+          "Openai0"
+        ],
+        "server": "Openaidns"
+      },
+      {
+        "rule_set": [
+          "Netflix0"
+        ],
+        "server": "Netflixdns"
+      },
+      {
+        "rule_set": [
+          "Google0"
+        ],
+        "server": "Googledns"
+      },
+      {
+        "rule_set": [
+          "Direct1"
+        ],
+        "server": "local-dns"
+      },
+      {
+        "query_type": [
+          "A"
+        ],
+        "rewrite_ttl": 1,
+        "server": "fallback"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 8888,
+      "sniff": true
+    },
+    {
+      "type": "tun",
+      "inet4_address": "172.19.0.1/30",
+      "stack": "system",
+      "sniff": true,
+      "auto_route": true,
+      "strict_route": true,
+      "gso": false,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 8888
+        }
+      }
+    }
+  ],
+  "route": {
+    "rule_set": [
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "OpenAI0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Youtube0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Telegram0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/telegram.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Telegram1",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Github0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/github.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Openai0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Netflix0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Netflix1",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/netflix.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Google0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Direct0",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "Proxy",
+        "tag": "Direct1",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cn.srs"
+      }
+    ],
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 853
+          },
+          {
+            "network": "udp",
+            "port": 443
+          },
+          {
+            "protocol": "stun"
+          }
+        ],
+        "outbound": "block"
+      },
+      {
+        "rule_set": [
+          "OpenAI0"
+        ],
+        "outbound": "OpenAI"
+      },
+      {
+        "rule_set": [
+          "Youtube0"
+        ],
+        "outbound": "Youtube"
+      },
+      {
+        "rule_set": [
+          "Telegram0",
+          "Telegram1"
+        ],
+        "outbound": "Telegram"
+      },
+      {
+        "rule_set": [
+          "Github0"
+        ],
+        "outbound": "Github"
+      },
+      {
+        "rule_set": [
+          "Openai0"
+        ],
+        "outbound": "Openai"
+      },
+      {
+        "rule_set": [
+          "Netflix0",
+          "Netflix1"
+        ],
+        "outbound": "Netflix"
+      },
+      {
+        "rule_set": [
+          "Google0"
+        ],
+        "outbound": "Google"
+      },
+      {
+        "rule_set": [
+          "Direct0",
+          "Direct1"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "auto_detect_interface": true,
+    "final": "Proxy"
+  },
+  "outbounds": [
+    {
+      "tag": "Proxy",
+      "outbounds": [
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "OpenAI",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "Youtube",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "Telegram",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "Github",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "Openai",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "Netflix",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "Google",
+      "outbounds": [
+        "Proxy",
+        "全部",
+        "🇭🇰 香港",
+        "🇯🇵 日本",
+        "🇸🇬 新加坡",
+        "🇺🇸 美国",
+        "🍍 东南亚",
+        "🇨🇳 台湾",
+        "其他国家",
+        "🎮 游戏"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "全部",
+      "outbounds": [
+        "香港 01",
+        "香港 02",
+        "香港 03",
+        "新加坡 01",
+        "新加坡 02",
+        "新加坡 03",
+        "台湾 01",
+        "台湾 02",
+        "台湾 03",
+        "美国 01",
+        "美国 02",
+        "美国 03",
+        "日本 01",
+        "日本 02",
+        "日本 03",
+        "IPLC(HW) 香港HKT家宽",
+        "IPLC(HW) 新加坡",
+        "IPLC(HW) 日本Sonet家宽",
+        "IPLC(HW) 美国ATT家宽",
+        "IPLC(HW) 台湾",
+        "Base 韩国SKT家宽",
+        "Base 美国Frontier家宽",
+        "Base 马来西亚TMNet家宽",
+        "Base 马来西亚",
+        "Base 泰国",
+        "Base 越南",
+        "Base 印度尼西亚",
+        "Base 澳大利亚 悉尼",
+        "Base 菲律宾 01",
+        "Base 菲律宾 02",
+        "Base 印度",
+        "Base 新西兰",
+        "Base 阿根廷",
+        "Base 瑞典",
+        "Base 意大利",
+        "Base 巴西",
+        "Base 英国",
+        "Base 土耳其",
+        "Base 德国",
+        "Base 巴基斯坦",
+        "Base 芬兰",
+        "Base 加拿大",
+        "Base 哈萨克斯坦",
+        "Base 乌拉圭",
+        "Plus 广港 Game 限速5M",
+        "Plus 沪日 Game 限速5M",
+        "Plus 沪韩 Game 限速5M"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "🇭🇰 香港",
+      "outbounds": [
+        "香港 01",
+        "香港 02",
+        "香港 03",
+        "IPLC(HW) 香港HKT家宽"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "🇯🇵 日本",
+      "outbounds": [
+        "日本 01",
+        "日本 02",
+        "日本 03",
+        "IPLC(HW) 日本Sonet家宽"
+      ],
+      "type": "urltest",
+      "url": "https://www.gstatic.com/generate_204",
+      "tolerance": 50,
+      "interrupt_exist_connections": false
+    },
+    {
+      "tag": "🇸🇬 新加坡",
+      "outbounds": [
+        "新加坡 01",
+        "新加坡 02",
+        "新加坡 03",
+        "IPLC(HW) 新加坡"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "🇺🇸 美国",
+      "outbounds": [
+        "美国 01",
+        "美国 02",
+        "美国 03",
+        "IPLC(HW) 美国ATT家宽",
+        "Base 美国Frontier家宽"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "🍍 东南亚",
+      "outbounds": [
+        "Base 泰国",
+        "Base 越南",
+        "Base 印度尼西亚",
+        "Base 菲律宾 01",
+        "Base 菲律宾 02",
+        "Base 印度"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "🇨🇳 台湾",
+      "outbounds": [
+        "台湾 01",
+        "台湾 02",
+        "台湾 03",
+        "IPLC(HW) 台湾"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "其他国家",
+      "outbounds": [
+        "香港 01",
+        "香港 02",
+        "香港 03",
+        "新加坡 01",
+        "新加坡 02",
+        "新加坡 03",
+        "台湾 01",
+        "台湾 02",
+        "台湾 03",
+        "美国 01",
+        "美国 02",
+        "美国 03",
+        "日本 01",
+        "日本 02",
+        "日本 03",
+        "IPLC(HW) 香港HKT家宽",
+        "IPLC(HW) 新加坡",
+        "IPLC(HW) 日本Sonet家宽",
+        "IPLC(HW) 美国ATT家宽",
+        "IPLC(HW) 台湾",
+        "Base 韩国SKT家宽",
+        "Base 美国Frontier家宽",
+        "Base 马来西亚TMNet家宽",
+        "Base 马来西亚",
+        "Base 泰国",
+        "Base 越南",
+        "Base 印度尼西亚",
+        "Base 澳大利亚 悉尼",
+        "Base 菲律宾 01",
+        "Base 菲律宾 02",
+        "Base 印度",
+        "Base 新西兰",
+        "Base 阿根廷",
+        "Base 瑞典",
+        "Base 意大利",
+        "Base 巴西",
+        "Base 英国",
+        "Base 土耳其",
+        "Base 德国",
+        "Base 巴基斯坦",
+        "Base 芬兰",
+        "Base 加拿大",
+        "Base 哈萨克斯坦",
+        "Base 乌拉圭",
+        "Plus 广港 Game 限速5M",
+        "Plus 沪日 Game 限速5M",
+        "Plus 沪韩 Game 限速5M"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "tag": "🎮 游戏",
+      "outbounds": [
+        "Plus 广港 Game 限速5M",
+        "Plus 沪日 Game 限速5M",
+        "Plus 沪韩 Game 限速5M"
+      ],
+      "interrupt_exist_connections": true,
+      "type": "selector"
+    },
+    {
+      "type": "direct",
+      "tag": "➜ Direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "tag": "香港 01",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3013,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "香港 02",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3012,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "香港 03",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3010,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "新加坡 01",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3023,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "新加坡 02",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3027,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "新加坡 03",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3024,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "台湾 01",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3009,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "台湾 02",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3011,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "台湾 03",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3036,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "美国 01",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3022,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "美国 02",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3016,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "美国 03",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3031,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "日本 01",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3018,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "日本 02",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3038,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "日本 03",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3014,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "IPLC(HW) 香港HKT家宽",
+      "server": "59.37.147.93",
+      "server_port": 3001,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "IPLC(HW) 新加坡",
+      "server": "59.37.147.93",
+      "server_port": 3004,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "IPLC(HW) 日本Sonet家宽",
+      "server": "59.37.147.93",
+      "server_port": 3002,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "IPLC(HW) 美国ATT家宽",
+      "server": "59.37.147.93",
+      "server_port": 3006,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "IPLC(HW) 台湾",
+      "server": "59.37.147.93",
+      "server_port": 3005,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 韩国SKT家宽",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3015,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 美国Frontier家宽",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3117,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 马来西亚TMNet家宽",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3116,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 马来西亚",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3043,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 泰国",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3028,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 越南",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3047,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 印度尼西亚",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3039,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 澳大利亚 悉尼",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3032,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 菲律宾 01",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3019,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 菲律宾 02",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3035,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 印度",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3045,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 新西兰",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3044,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 阿根廷",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3020,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 瑞典",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3049,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 意大利",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3042,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 巴西",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3033,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 英国",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3017,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 土耳其",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3021,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 德国",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3030,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 巴基斯坦",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3050,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 芬兰",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3037,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 加拿大",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3041,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 哈萨克斯坦",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3051,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Base 乌拉圭",
+      "server": "blog.netsdddru.xyz",
+      "server_port": 3052,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Plus 广港 Game 限速5M",
+      "server": "125.94.72.177",
+      "server_port": 2002,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Plus 沪日 Game 限速5M",
+      "server": "106.75.209.245",
+      "server_port": 2002,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    },
+    {
+      "tag": "Plus 沪韩 Game 限速5M",
+      "server": "106.75.236.234",
+      "server_port": 2002,
+      "type": "shadowsocks",
+      "method": "chacha20-ietf-poly1305",
+      "password": "b02d7b64-84d6-4376-a582-fae34137a624",
+      "plugin": "",
+      "plugin_opts": ""
+    }
+  ]
+}
